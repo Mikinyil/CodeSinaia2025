@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-df = pd.read_csv("C:/Users/raicu/git/CodeSinaia-2025/IntroToPy/mountains_db.tsv", sep="\t", names=["Nume", "Altitudine", "Tara", "ISO"])
-
+df1 = pd.read_csv("C:/Users/raicu/git/CodeSinaia-2025/IntroToPy/mountains_db.tsv", sep="\t", names=["Nume", "Altitudine", "Tara", "ISO"])
+df2 = pd.read_csv("C:/Users/raicu/git/CodeSinaia-2025/IntroToPy/countries_db.tsv", sep="\t", names=["ISO", "Continent"])
+df = pd.merge(df1, df2, on="ISO", how="left")
+print(df.head())
 df["Altitudine"] = pd.to_numeric(df["Altitudine"], errors="coerce")
 
 num_countries = df["ISO"].nunique()
